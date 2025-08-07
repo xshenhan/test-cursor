@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Three-Body Simulation</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Three-Body Problem</h1>
+      <div class="controls">
+        <div class="row">
+          <label>G <input type="number" id="G" step="0.0001" value="1" /></label>
+          <label>dt <input type="number" id="dt" step="0.0001" value="0.005" /></label>
+          <label>Integrator
+            <select id="integrator">
+              <option value="rk4">RK4</option>
+              <option value="verlet">Velocity Verlet</option>
+              <option value="euler">Euler</option>
+            </select>
+          </label>
+          <label>Trail length <input type="number" id="trailLength" min="0" max="5000" value="500" /></label>
+          <button id="reset">Reset</button>
+          <button id="toggle">Pause</button>
+          <button id="clearTrails">Clear trails</button>
+        </div>
+        <details>
+          <summary>Initial Conditions</summary>
+          <div class="grid">
+            <div class="body">
+              <h3>Body 1</h3>
+              <label>m <input type="number" id="m1" step="0.01" value="1" /></label>
+              <label>x <input type="number" id="x1" step="0.1" value="-1.2" /></label>
+              <label>y <input type="number" id="y1" step="0.1" value="0" /></label>
+              <label>vx <input type="number" id="vx1" step="0.1" value="0" /></label>
+              <label>vy <input type="number" id="vy1" step="0.1" value="1.2" /></label>
+              <label>color <input type="color" id="c1" value="#ff6b6b" /></label>
+            </div>
+            <div class="body">
+              <h3>Body 2</h3>
+              <label>m <input type="number" id="m2" step="0.01" value="1" /></label>
+              <label>x <input type="number" id="x2" step="0.1" value="1.2" /></label>
+              <label>y <input type="number" id="y2" step="0.1" value="0" /></label>
+              <label>vx <input type="number" id="vx2" step="0.1" value="0" /></label>
+              <label>vy <input type="number" id="vy2" step="0.1" value="-1.2" /></label>
+              <label>color <input type="color" id="c2" value="#4dabf7" /></label>
+            </div>
+            <div class="body">
+              <h3>Body 3</h3>
+              <label>m <input type="number" id="m3" step="0.01" value="1" /></label>
+              <label>x <input type="number" id="x3" step="0.1" value="0" /></label>
+              <label>y <input type="number" id="y3" step="0.1" value="1.6" /></label>
+              <label>vx <input type="number" id="vx3" step="0.1" value="-1.2" /></label>
+              <label>vy <input type="number" id="vy3" step="0.1" value="0" /></label>
+              <label>color <input type="color" id="c3" value="#ffd43b" /></label>
+            </div>
+          </div>
+          <div class="row">
+            <button id="applyIC">Apply Initial Conditions</button>
+            <button id="randomIC">Random Stable-ish</button>
+          </div>
+        </details>
+      </div>
+    </header>
+    <main>
+      <canvas id="view"></canvas>
+      <div class="legend">
+        <label><input type="checkbox" id="showForces" checked /> Show forces</label>
+        <label><input type="checkbox" id="showVelocities" checked /> Show velocities</label>
+        <label><input type="checkbox" id="showEnergy" checked /> Show energy</label>
+        <label><input type="checkbox" id="autoScale" checked /> Auto scale</label>
+      </div>
+      <div id="readout"></div>
+    </main>
+  </div>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
